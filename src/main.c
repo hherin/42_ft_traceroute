@@ -36,7 +36,7 @@ static void client_setup(t_trace *data)
     int retaddinfo = getaddrinfo(data->srvname, NULL, &hints, &data->send_addinfo);
     if (retaddinfo)
     {
-        str_exit_error(gai_strerror(retaddinfo), "traceroute:", data, 1);
+        str_exit_error(gai_strerror(retaddinfo), "ft_traceroute:", data, 1);
     }
     if ((data->recvsock = socket(AF_INET, SOCK_RAW, ICMP_PROTO)) < 0)
     {
@@ -51,7 +51,7 @@ static void client_setup(t_trace *data)
 static void route_tracing(t_trace* data)
 {
     char *dst= get_ip_addr((struct sockaddr_in*)data->send_addinfo->ai_addr);
-    printf("traceroute to %s (%s), %d hops max", data->srvname, dst, data->nb_probe);
+    printf("ft_traceroute to %s (%s), %d hops max", data->srvname, dst, data->nb_probe);
 
     while (data->nb_probe--)
     {

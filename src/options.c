@@ -1,8 +1,8 @@
 #include "../inc/traceroute.h"
 
-static void get_options(char *av, int ac)
+static void get_options(char *av)
 {
-    if (!ft_strncmp(av, "-help", 6))
+    if (!ft_strncmp(av, "--help", 6))
     {
         usage();
     }
@@ -10,7 +10,7 @@ static void get_options(char *av, int ac)
     {
         if (av[0] == '-')
         {
-            fprintf(stderr, "Bad option '-%c' (argc %d)\n", av[1], ac + 1);
+            fprintf(stderr, "ft_traceroute: invalid option -- '%c'\nTry './ft_traceroute --help' for more information.\n", av[1]);
             exit(2);
         }
         else
@@ -20,14 +20,13 @@ static void get_options(char *av, int ac)
     }
 }
 
-
 void parse_options(char **av, t_trace *data)
 {
     int i = 0;
 
     while (av[i] && av[i][0] == '-')
     {
-        get_options(av[i], i + 1);
+        get_options(av[i]);
         i++;
     }
     while (av[i])

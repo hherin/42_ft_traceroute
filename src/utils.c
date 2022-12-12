@@ -30,8 +30,9 @@ double diff_rtt(struct timeval stime, struct timeval recvtime)
 
 void usage()
 {
-    printf("Usage:\n  traceroute [] host\n");
-    printf("Options:\n  --help\t\t\tRead this help and exit\n");
+    printf("Usage:  ft_traceroute [OPTION...] HOST\n");
+    printf("Print the route packets trace to network host.\n");
+    printf("\n  --help\t\tgive this help list\n");
     exit(0);
 }
 

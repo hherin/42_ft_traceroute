@@ -75,7 +75,7 @@ static void print_stat(t_trace* data, struct timeval rtime, struct icmp icmp, st
 {
     if (!data->p_ip_addr)
     {
-        printf("%s ", get_ip_addr(rsin));
+        printf("%s  ", get_ip_addr(rsin));
         data->p_ip_addr = true;
     }
     if (icmp.icmp_type == ICMP_TIME_EXCEEDED)
