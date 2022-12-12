@@ -3,9 +3,8 @@
 
 void send_udp(t_trace *data)
 {
-    static int port = 33434, ttl = 1, inc = 0;
+    static int port = 33434, ttl = 1, inc = 1;
 
-    data->next = false;
     setsockopt(data->sendsock, IPPROTO_IP, IP_TTL, &ttl, sizeof(ttl));
 
     struct sockaddr_in *sendaddr = (struct sockaddr_in*)data->send_addinfo->ai_addr;
@@ -17,14 +16,15 @@ void send_udp(t_trace *data)
     {
         str_exit_error(strerror(errno), "Internal : sendto fail :", data, 1);
     }
-    
-    
-    if (++inc == 3)
+
+    if (data->block_recv % 3 == 0)
     {
-        data->next = true;
+        data->p_ip_addr = false;
+    }
+    if (!(inc++ % 3))
+    {
         ttl++;
         port++;
-        inc = 0;
     }
 }
 

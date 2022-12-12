@@ -12,6 +12,7 @@ int main(int ac, char **av)
         .sendsock = -1,
         .recvsock = -1,
         .nb_probe = 64,
+        .p_ip_addr = false,
     };
 
     parse_options(&av[1], &data);
@@ -44,8 +45,7 @@ static void client_setup(t_trace *data)
     if ((data->sendsock = socket(AF_INET, SOCK_DGRAM, UDP_PROTO)) < 0)
     {
         str_exit_error(strerror(errno), "Internal error:", data, 1);
-    }   
-    
+    }
 }
 
 static void route_tracing(t_trace* data)

@@ -46,10 +46,10 @@ typedef struct trace
     int recvsock;
     unsigned int nb_probe;
     struct addrinfo* send_addinfo;
-    unsigned int option;
     struct timeval sendtime;
-    bool next;
-
+    bool p_ip_addr;
+    bool error;
+    int block_recv;
 }              t_trace;
 
 
@@ -62,5 +62,6 @@ void str_exit_error(const char *strerr, char *buf, t_trace *data, int exitcode);
 double diff_rtt(struct timeval stime, struct timeval rtime);
 char *get_ip_addr(struct sockaddr_in *sin);
 void usage();
+void end_traceroute(t_trace *data);
 
 #endif

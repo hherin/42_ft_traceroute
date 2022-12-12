@@ -34,3 +34,11 @@ void usage()
     printf("Options:\n  --help\t\t\tRead this help and exit\n");
     exit(0);
 }
+
+void end_traceroute(t_trace *data)
+{
+    freeaddrinfo(data->send_addinfo);
+    close(data->sendsock);
+    close(data->recvsock);
+    exit(0);
+}
